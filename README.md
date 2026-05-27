@@ -1,7 +1,7 @@
 ## GitHub Stats
 
 <!-- Including forks -->
-[![GitHub language stats](https://github-readme-stats-six-rho-88.vercel.app/api/top-langs/?username=1window2&count_private=true&layout=normal&langs_count=4&theme=swift)](https://github.com/anuraghazra/github-readme-stats)
+[![GitHub language stats](https://github-readme-stats-six-rho-88.vercel.app/api/top-langs/?username=1window2&count_private=true&layout=normal&langs_count=5&theme=swift)](https://github.com/anuraghazra/github-readme-stats)
 <!-- Not including forks
 [![GitHub language stats](https://vercel-github-readme-stats-psi.vercel.app/api/top-langs/?username=1window2&count_private=true&layout=normal&langs_count=4&theme=swift)](https://github.com/anuraghazra/github-readme-stats)
 -->
