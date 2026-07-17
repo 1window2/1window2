@@ -2,8 +2,8 @@
 
 <div align="center">
 
-![](https://github-profile-summary-cards-two-pi.vercel.app/api/cards/profile-details?username=1window2&theme=nord_dark&name=1window2&period=all_time&v=c2aa9cc)
-![](https://github-profile-summary-cards-two-pi.vercel.app/api/cards/repos-per-language?username=1window2&theme=nord_dark&v=c2aa9cc)
-![](https://github-profile-summary-cards-two-pi.vercel.app/api/cards/most-commit-language?username=1window2&theme=nord_dark&v=c2aa9cc)
-![](https://github-profile-summary-cards-two-pi.vercel.app/api/cards/stats?username=1window2&theme=nord_dark&v=c2aa9cc)
-![](https://github-profile-summary-cards-two-pi.vercel.app/api/cards/productive-time?username=1window2&theme=nord_dark&utcOffset=9&v=c2aa9cc)
+![](https://raw.githubusercontent.com/1window2/1window2/profile-cards-cache/profile-summary-card-output/cache/nord_dark/0-profile-details.svg)
+![](https://raw.githubusercontent.com/1window2/1window2/profile-cards-cache/profile-summary-card-output/cache/nord_dark/1-repos-per-language.svg)
+![](https://raw.githubusercontent.com/1window2/1window2/profile-cards-cache/profile-summary-card-output/cache/nord_dark/2-most-commit-language.svg)
+![](https://raw.githubusercontent.com/1window2/1window2/profile-cards-cache/profile-summary-card-output/cache/nord_dark/3-stats.svg)
+![](https://raw.githubusercontent.com/1window2/1window2/profile-cards-cache/profile-summary-card-output/cache/nord_dark/4-productive-time.svg)
