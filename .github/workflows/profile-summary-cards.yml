@@ -22,50 +22,43 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Generate and validate profile cards
-        shell: bash
+      - name: Check out private profile-card action
+        uses: actions/checkout@v4
+        with:
+          repository: 1window2/github-profile-summary-cards
+          ref: d4b7ffdbbb9750d6b410abac3dd847fb9ef51e7a
+          token: ${{ secrets.SUMMARY_CARD_TOKEN_PRIVATE }}
+          path: .github/actions/profile-summary-cards
+          persist-credentials: false
+
+      - name: Generate profile cards
+        uses: ./.github/actions/profile-summary-cards
         env:
-          BASE_URL: https://github-profile-summary-cards-two-pi.vercel.app/api/cards
-          CACHE_BUSTER: ${{ github.run_id }}-${{ github.run_attempt }}
+          GITHUB_TOKEN: ${{ secrets.SUMMARY_CARD_TOKEN_PRIVATE }}
+        with:
+          USERNAME: 1window2
+          UTC_OFFSET: 9
+          INCLUDE_PRIVATE_REPOS: true
+          AUTO_PUSH: false
+          THEME: nord_dark
+          NAME: 1window2
+          PROFILE_PERIOD: all_time
+          COMMIT_LANGUAGE_PERIOD: all_time
+
+      - name: Validate profile cards
+        shell: bash
         run: |
           set -euo pipefail
 
           staging="$RUNNER_TEMP/profile-cards"
           mkdir -p "$staging"
+          cp profile-summary-card-output/nord_dark/*.svg "$staging/"
 
-          fetch_card() {
-            local filename="$1"
-            local endpoint="$2"
-            local marker="$3"
-            local url="${BASE_URL}/${endpoint}&v=${CACHE_BUSTER}&source=cache"
-
-            curl --fail --location --silent --show-error \
-              --retry 3 --retry-all-errors --connect-timeout 10 --max-time 180 \
-              "$url" --output "$staging/$filename"
-            grep -q '^<svg' "$staging/$filename"
-            grep -Fq "$marker" "$staging/$filename"
-          }
-
-          fetch_card \
-            "0-profile-details.svg" \
-            "profile-details?username=1window2&theme=nord_dark&name=1window2&period=all_time" \
-            "contributions over all time"
-          fetch_card \
-            "1-repos-per-language.svg" \
-            "repos-per-language?username=1window2&theme=nord_dark" \
-            "Top Languages by Repo"
-          fetch_card \
-            "2-most-commit-language.svg" \
-            "most-commit-language?username=1window2&theme=nord_dark" \
-            "Top Languages by Commit"
-          fetch_card \
-            "3-stats.svg" \
-            "stats?username=1window2&theme=nord_dark" \
-            "Total Commits:"
-          fetch_card \
-            "4-productive-time.svg" \
-            "productive-time?username=1window2&theme=nord_dark&utcOffset=9" \
-            "Commits (UTC +9.00)"
+          grep -Fq "contributions over all time" "$staging/0-profile-details.svg"
+          grep -Fq "Top Languages by Repo" "$staging/1-repos-per-language.svg"
+          grep -Fq "Top Languages by Commit" "$staging/2-most-commit-language.svg"
+          grep -Fq "Total Commits:" "$staging/3-stats.svg"
+          grep -Fq "Commits (UTC +9.00)" "$staging/4-productive-time.svg"
 
           python3 - "$staging" <<'PY'
           import pathlib
